@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  start_time: 2017-12-12 13:29:47
+  date: 2017-12-12
+  name_of_reserver: MyString
+  number_of_seat: 1
+  business_id: 1
+  user_id: 1
+
+two:
+  start_time: 2017-12-12 13:29:47
+  date: 2017-12-12
+  name_of_reserver: MyString
+  number_of_seat: 1
+  business_id: 1
+  user_id: 1
