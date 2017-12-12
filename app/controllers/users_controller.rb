@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     @user = User.new(allowed_params)
     if @user.save
       session[:user_id] = @user.id
-      redirect_to user_path(@user)
+      redirect_to new_business_path
     else
       render :new
     end
