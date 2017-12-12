@@ -1,0 +1,10 @@
+<div class="text-center" style="padding-top: 18%;font-family: Alfa Slab One;vertical-align: middle;">
+  <p style="color: white">Vey Up</p>
+  <p>What you Got?</p>
+  <%= form_for(@business)  do |f| %>
+    <%= f.text_field :term, placeholder: "Vey it up", class: "responsive-input", :style => "border-radius:2px;" %>
+    <%= f.submit "Search", class: "btn btn-warning responsive-button responsive-search", :style => "margin-left: -5.5px; border-radius:2px;"%>
+  <% end %>
+</div>
+
+

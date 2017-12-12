@@ -1,0 +1,29 @@
+<div class="text-center" style="height:initial;padding:40px 0px;opacity:0.6;background-color:transparent;margin:0px auto;width:80%;">
+    <%= form_for @user do |f| %>
+        <% if @user.errors.any? %>
+            <div class="error_messages">
+              <h2>Form is invalid</h2>
+              <ul>
+                <% @user.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+        <% end %>
+        <div style="padding:30px 0px 5px 0px;">
+            <%= f.text_field :user_name, placeholder: "Name", class: 'responsive-input',:required => true %>
+        </div>
+        <div style="padding:0px 0px 5px 0px;">
+            <%= f.text_field :email, placeholder: "Email", class: 'responsive-input',:required => true %>
+        </div>
+        <div style="padding:0px 0px 5px 0px;">
+            <%= f.password_field :password, placeholder: "Password", class: 'responsive-input',:required => true %>
+        </div>
+        <div style="padding:0px 0px 5px 0px;">
+            <%= f.password_field :password_confirmation, placeholder: "Password Confirmation", class: 'responsive-input',:required => true %>
+        </div>
+        <div style="padding:0px 0px 5px 0px;">
+            <%= f.submit "Sign Up", class: 'btn btn-warning responsive-button' %>
+        </div>
+    <% end %>
+</div>
