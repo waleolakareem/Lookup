@@ -1,7 +1,15 @@
+body {
+  background-image:url(https://img.huffingtonpost.com/asset/585be1aa1600002400bdf2a6.jpeg?ops=scalefit_970_noupscale);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+
 .responsive-input {
   // Large input box
   height: 46px;
-  width: 300px;
+  width: 350px;
   padding: 10px 16px;
   font-size: 18px;
   line-height: 1.3333333;
@@ -94,7 +102,7 @@
   line-height: 1.3333333;
   border-radius: 7px;
   color: Black;
-  background-color:#BDB885;
+  // background-color:#BDB885;
   box-shadow: 1px 1px 5px rgba(0,0,0,1);
 
 
