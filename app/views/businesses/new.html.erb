@@ -1,6 +1,6 @@
 <div class="text-center" style="padding-top: 18%;font-family: Alfa Slab One;vertical-align: middle;">
   <% if !current_user %>
-    <h3 style="color:white;"><strong>Please <a href="/sessions/new">Sign in</a> or <a href="/users/new">Sign up</a> to use this App</strong></h3>
+    <h3 class="responsive-home_text" style="color:white;"><strong>Please <a href="/sessions/new">Sign in</a> or <a href="/users/new">Sign up</a> to use this App</strong></h3>
   <% else %>
     <p style="color:white;">Find a Eat-out</p>
     <%= form_for(@business)  do |f| %>

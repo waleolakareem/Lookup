@@ -148,11 +148,18 @@ body {
 .responsive-survey_text{
   font-size: 15px;
   color: black;
-  @media screen and (max-width:640px){
+  @media screen and (max-width:800px){
     font-size: 12px;
   }
 }
 
+.responsive-home_text{
+  font-size: 24px;
+  color: black;
+  @media screen and (max-width:640px){
+    font-size: 15px;
+  }
+}
 .checked {
   color: #ffa50061;
 }
