@@ -25,6 +25,9 @@
     <head>
     <%= render '/header' %>
   </head>
+  <div class="container text-center">
+    <div class=" container alert"><%= flash[:alert] %></div>
+  </div>
     <%= yield %>
   </body>
 </html>
