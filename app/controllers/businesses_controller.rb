@@ -8,7 +8,6 @@ class BusinessesController < ApplicationController
   end
 
   def create
-
     @business = Business.where(term: params[:business][:term])
     @term = params[:business][:term]
     if @business.length <= 0
