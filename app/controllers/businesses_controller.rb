@@ -1,3 +1,4 @@
+require 'json'
 class BusinessesController < ApplicationController
   def index
     @business = Business.where(term: params[:term])
@@ -24,7 +25,7 @@ class BusinessesController < ApplicationController
       request["location"] = 'San Francisco'
       request["authorization"] = ENV['token'] + ' ' +  ENV['token_secret']
       request["cache-control"] = 'no-cache'
-      request["postman-token"] = ENV['postman-token']
+      request["postman-token"] = 'b10b0b57-438f-05ea-136d-2d4d75ab70a6'
       request["limit"] = '50'
 
       response = http.request(request)
