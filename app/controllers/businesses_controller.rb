@@ -23,7 +23,7 @@ class BusinessesController < ApplicationController
       request = Net::HTTP::Get.new(url)
       request["term"] = params[:business][:term]
       request["location"] = 'San Francisco'
-      request["authorization"] = ENV['token'] + ' ' +  ENV['token_secret']
+      request["authorization"] = ENV['token'] + ' ' + ENV['token_secret']
       request["cache-control"] = 'no-cache'
       request["postman-token"] = 'b10b0b57-438f-05ea-136d-2d4d75ab70a6'
       request["limit"] = '50'
