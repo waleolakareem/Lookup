@@ -1,7 +1,8 @@
 $( document ).ready(function() {
-      $('#datetimepicker1').datetimepicker({
-  });
-      goin()
+    $('#datetimepicker1').datetimepicker({
+    });
+    goin()
+    $("input").geocomplete();
 });
 
 var goin = function(){
