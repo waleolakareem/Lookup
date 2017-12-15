@@ -1,7 +1,25 @@
 $( document ).ready(function() {
-      $('#datetimepicker1').datetimepicker({
-  });
-      goin()
+    $('#datetimepicker1').datetimepicker({
+    });
+    goin()
+    $("#input").geocomplete();
+
+  // x = navigator.geolocation;
+  // x.getCurrentPosition(success, failure)
+  // function success(position) {
+  //   var mylat = position.coords.latitude;
+  //   var mylong = position.coords.longitude;
+  //   $('#place').val(mylat);
+  //   $('#input').val(mylong);
+  // }
+
+  // function failure () {
+  //   $('#input').html("it didnt work");
+  // }
+
+
+
+
 });
 
 var goin = function(){
@@ -15,3 +33,5 @@ var goin = function(){
 
   })
 }
+
+

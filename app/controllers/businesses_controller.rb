@@ -1,20 +1,28 @@
 require 'json'
 class BusinessesController < ApplicationController
   def index
-    @business = Business.where(term: params[:term])
+    @business = Business.all
+      if params[:term] && params[:location]
+        @business = Business.where("term = ? AND location = ?",params[:term],params[:location]).Location.within(5, :origin => request.location.city)
+      end
   end
   def new
     @business =Business.new
   end
 
   def create
-    @business = Business.where(term: params[:business][:term])
+    p allowed_params
+    @business = Business.where("term = ? AND location = ?",params[:business][:term],params[:business][:location])
+    p "e" * 99
+    p @business.length
+    p "p" * 99
     @term = params[:business][:term]
+    @location = params[:business][:location]
     if @business.length <= 0
       require 'uri'
       require 'net/http'
 
-      url = URI("https://api.yelp.com/v3/businesses/search?term=#{params[:business][:term]}&location=sanfrancisco&limit=50&Authorization=ENV[token]%20ENV[token_secret]")
+      url = URI("https://api.yelp.com/v3/businesses/search?term=#{params[:business][:term]}&location=#{params[:business][:location]}&limit=50&Authorization=ENV[token]%20ENV[token_secret]")
 
       http = Net::HTTP.new(url.host, url.port)
       http.use_ssl = true
@@ -22,8 +30,8 @@ class BusinessesController < ApplicationController
 
       request = Net::HTTP::Get.new(url)
       request["term"] = params[:business][:term]
-      request["location"] = 'San Francisco'
-      request["authorization"] = ENV['token'] + ' ' +  ENV['token_secret']
+      request["location"] = params[:business][:location]
+      request["authorization"] = ENV['token'] + ' ' + ENV['token_secret']
       request["cache-control"] = 'no-cache'
       request["postman-token"] = 'b10b0b57-438f-05ea-136d-2d4d75ab70a6'
       request["limit"] = '50'
@@ -34,11 +42,13 @@ class BusinessesController < ApplicationController
       api_response = JSON.parse(response.read_body)
 
       api_response["businesses"].each do |yelp|
-        @business= Business.new()
+        @business= Business.new(allowed_params)
         @business.name = yelp["name"]
         @business.price = yelp["price"]
         @business.rating = yelp["rating"]
         @business.review_count  = yelp["review_count"]
+        @business.longitude = yelp["coordinates"]["longitude"]
+        @business.latitude = yelp["coordinates"]["latitude"]
         @business.city  = yelp["location"]["city"]
         @business.country  = yelp["location"]["country"]
         @business.address  = yelp["location"]["address1"]
@@ -46,13 +56,15 @@ class BusinessesController < ApplicationController
         @business.zip_code  = yelp["location"]["zip_code"]
         @business.state  = yelp["location"]["state"]
         @business.term = @term
+        @business.location = @location
         @business.image_url = yelp["image_url"]
         @business.save
       end
-      redirect_to businesses_path(term: params[:business][:term])
+      render 'index'
+
     else
       # @business = Business.where(term: params[:business][:term])
-      redirect_to businesses_path(term: params[:business][:term])
+      render 'index'
     end
   end
 
@@ -64,6 +76,6 @@ class BusinessesController < ApplicationController
 
   private
     def allowed_params
-      params.require(:business).permit(:rating,:price,:phone,:name,:review_count,:image_url,:city,:country,:address,:state,:zip_code,:term )
+      params.require(:business).permit(:rating,:price,:phone,:name,:review_count,:image_url,:city,:country,:address,:state,:zip_code,:term, :location, :longitude,:latitude)
     end
 end

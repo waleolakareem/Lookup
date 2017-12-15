@@ -27,6 +27,27 @@ body {
   }
 }
 
+.responsive-home-input {
+  // Large input box
+  height: 46px;
+  width: 350px;
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.3333333;
+  border-radius: 3px;
+  border-color: #BDB885;
+
+  @media screen and (max-width: 640px) {
+    // Small input box
+    height: 30px;
+    width: 150px;
+    padding: 5px 10px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px;
+  }
+}
+
 .responsive-authentication{
   @media screen and (max-width:640px){
     margin-bottom: 5px;
