@@ -4,8 +4,8 @@
   <% else %>
     <p style="color:white;">Find a Eat-out</p>
     <%= form_for(@business)  do |f| %>
-      <%= f.text_field :term, placeholder: "food type",id: "place", class: "responsive-input", :style => "border-radius:2px;" %>
-      <%= f.text_field :location, placeholder: "City", id: "input", class: "responsive-input" %>
+      <%= f.text_field :term, placeholder: "food type",id: "place", class: "responsive-home-input", :style => "border-radius:2px;" %>
+      <%= f.text_field :location, placeholder: "City", id: "input", class: "responsive-home-input" %>
       <%= f.submit "Look up", class: "btn btn-outline-secondary responsive-button responsive-search",id: "demo", :style => "margin-left: -5.5px; border-radius:2px;"%>
     <% end %>
   <% end %>
