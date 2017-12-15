@@ -2,7 +2,7 @@ $( document ).ready(function() {
     $('#datetimepicker1').datetimepicker({
     });
     goin()
-    $("input").geocomplete();
+    $("#input").geocomplete();
 });
 
 var goin = function(){
