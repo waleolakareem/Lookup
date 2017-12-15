@@ -3,7 +3,7 @@ class BusinessesController < ApplicationController
   def index
     @business = Business.all
       if params[:term] && params[:location]
-        @business = Business.where("term = ? AND location = ?",params[:term],params[:location])
+        @business = Business.where("term = ? AND location = ?",params[:term],params[:location]).Location.within(5, :origin => request.location.city)
       end
   end
   def new
@@ -47,6 +47,8 @@ class BusinessesController < ApplicationController
         @business.price = yelp["price"]
         @business.rating = yelp["rating"]
         @business.review_count  = yelp["review_count"]
+        @business.longitude = yelp["coordinates"]["longitude"]
+        @business.latitude = yelp["coordinates"]["latitude"]
         @business.city  = yelp["location"]["city"]
         @business.country  = yelp["location"]["country"]
         @business.address  = yelp["location"]["address1"]
@@ -74,6 +76,6 @@ class BusinessesController < ApplicationController
 
   private
     def allowed_params
-      params.require(:business).permit(:rating,:price,:phone,:name,:review_count,:image_url,:city,:country,:address,:state,:zip_code,:term, :location )
+      params.require(:business).permit(:rating,:price,:phone,:name,:review_count,:image_url,:city,:country,:address,:state,:zip_code,:term, :location, :longitude,:latitude)
     end
 end

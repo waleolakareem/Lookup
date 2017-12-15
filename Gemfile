@@ -38,7 +38,9 @@ gem 'bootstrap3-datetimepicker-rails', '~> 4.14.30'
 #dotenv
 gem 'dotenv'
 #geocoder
-gem 'geocoder'
+# gem 'geocoder'
+# #geokit
+# gem 'geokit-rails'
 
 
 group :development, :test do
