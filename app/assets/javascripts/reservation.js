@@ -4,18 +4,18 @@ $( document ).ready(function() {
     goin()
     $("#input").geocomplete();
 
-  // x = navigator.geolocation;
-  // x.getCurrentPosition(success, failure)
-  // function success(position) {
-  //   var mylat = position.coords.latitude;
-  //   var mylong = position.coords.longitude;
-  //   $('#place').val(mylat);
-  //   $('#input').val(mylong);
-  // }
+  x = navigator.geolocation;
+  x.getCurrentPosition(success, failure)
+  function success(position) {
+    var mylat = position.coords.latitude;
+    var mylong = position.coords.longitude;
+    $('#lat').val(mylat);
+    $('#long').val(mylong);
+  }
 
-  // function failure () {
-  //   $('#input').html("it didnt work");
-  // }
+  function failure () {
+    $('#input').html("it didnt work");
+  }
 
 
 
