@@ -83,6 +83,38 @@ body {
   }
 }
 
+.responsive-image {
+  width:150px;
+  height:150px;
+
+  @media screen and (max-width: 640px) {
+    width:90px;
+    height:90px;
+  }
+}
+
+.responsive-follow-image {
+  width:90px;
+  height:90px;
+
+  @media screen and (max-width: 640px) {
+    width:50px;
+    height:50px;
+  }
+}
+
+
+.responsive-icon-image {
+  width:30px;
+  height:30px;
+
+  @media screen and (max-width: 640px) {
+    width:30px;
+    height:30px;
+  }
+}
+
+
 .responsive-button {
   // Large button
   padding: 10px 16px;
@@ -147,6 +179,19 @@ body {
   @media screen and (max-width:640px){
     font-size: 15px;
   }
+}
+.checked {
+  color: #ffa50061;
+}
+
+.rator{
+  // display: none;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+.responsive_upload_image{
+  margin: 0 auto;
 }
 
 .responsive-margin{
