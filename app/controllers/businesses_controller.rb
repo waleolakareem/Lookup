@@ -22,7 +22,7 @@ class BusinessesController < ApplicationController
       require 'uri'
       require 'net/http'
 
-      url = URI("https://api.yelp.com/v3/businesses/search?term=#{params[:business][:term]}&location=#{params[:business][:location]}&limit=50&Authorization=ENV[token]%20ENV[token_secret]")
+      url = URI("https://api.yelp.com/v3/businesses/search?term=#{params[:business][:term]}&location=#{params[:business][:location]}&limit=50&sort_by=distance&Authorization=ENV[token]%20ENV[token_secret]")
 
       http = Net::HTTP.new(url.host, url.port)
       http.use_ssl = true
@@ -58,7 +58,7 @@ class BusinessesController < ApplicationController
         @business.image_url = yelp["image_url"]
         @business.longitude = yelp["coordinates"]["longitude"]
         @business.latitude = yelp["coordinates"]["latitude"]
-        @business.distance = yelp["distance"]/1609.34.round(2)
+        @business.distance = yelp["distance"]*0.000621371
         @business.image_url = yelp["image_url"]
         @business.save
       end
