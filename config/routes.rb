@@ -6,5 +6,5 @@ Rails.application.routes.draw do
     resources :reservations, shallow: true
   end
   get 'logout', to: 'sessions#destroy'
-  root 'users#new'
+  root 'businesses#new'
 end
