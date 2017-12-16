@@ -26,11 +26,27 @@
 
   <body>
     <head>
-    <%= render '/header' %>
-  </head>
-  <div class="container text-center">
-    <div class=" container alert"><%= flash[:alert] %></div>
-  </div>
+      <%= render '/header' %>
+    </head>
+    <div class="container text-center">
+      <div class=" container alert"><%= flash[:alert] %></div>
+    </div>
+    <div class="container responsive-home-div">
+      <div class="row" style="height: 100%; width: 100%;">
+        <div class="col-lg-4 col-xs-4 responsive-home-cols">
+            <i class="fa fa-search fa-5x" aria-hidden="true" font-size></i>
+            <p style="font-weight: 900;">Find</p>
+        </div>
+        <div class="col-lg-4 col-xs-4 responsive-home-cols">
+            <i class="fa fa-cutlery fa-5x" aria-hidden="true"></i>
+            <p style="font-weight: 900;">Reserve or Goin</p>
+        </div>
+        <div class="col-lg-4 col-xs-4 responsive-home-cols">
+            <i class="fa fa-money fa-5x" aria-hidden="true"></i>
+            <p style="font-weight: 900;">Save on your order</p>
+        </div>
+      </div>
+    </div>
     <%= yield %>
   </body>
 </html>
