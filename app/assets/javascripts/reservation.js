@@ -1,8 +1,9 @@
 $( document ).ready(function() {
     $('#datetimepicker1').datetimepicker({
     });
-    goin()
+    goin();
     $("#input").geocomplete();
+    callToAction();
 
   x = navigator.geolocation;
   x.getCurrentPosition(success, failure)
@@ -34,4 +35,9 @@ var goin = function(){
   })
 }
 
-
+var callToAction = function () {
+  if ($('body').attr('id') === "showpage" ) {
+    $('#callToAction').hide();
+    $('.class').hide()
+  }
+}
