@@ -11,30 +11,31 @@ class BusinessesController < ApplicationController
   end
 
   def create
-    p allowed_params
     @business = Business.where("term = ? AND location = ?",params[:business][:term],params[:business][:location])
-    p "e" * 99
-    p @business.length
-    p "p" * 99
     @term = params[:business][:term]
     @location = params[:business][:location]
+    @longitude = params[:business][:longitude].to_f
+    @latitude = params[:business][:latitude].to_f
     if @business.length <= 0
       require 'uri'
       require 'net/http'
+      p @longitude
+      p @latitude
+      p @term
 
-      url = URI("https://api.yelp.com/v3/businesses/search?term=#{params[:business][:term]}&location=#{params[:business][:location]}&limit=50&sort_by=distance&Authorization=ENV[token]%20ENV[token_secret]")
+      url = URI("https://api.yelp.com/v3/businesses/search?term=#{@term}&longitude=#{@longitude}&latitude=#{@latitude}&limit=50&sort_by=distance&Authorization=ENV[token]%20ENV[token_secret]")
 
       http = Net::HTTP.new(url.host, url.port)
       http.use_ssl = true
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
       request = Net::HTTP::Get.new(url)
-      request["term"] = params[:business][:term]
+      request["term"] = 'food'
       request["location"] = params[:business][:location]
       request["authorization"] = ENV['token'] + ' ' + ENV['token_secret']
+      request["limit"] = '50'
       request["cache-control"] = 'no-cache'
       request["postman-token"] = 'b10b0b57-438f-05ea-136d-2d4d75ab70a6'
-      request["limit"] = '50'
 
       response = http.request(request)
       # puts response.read_body
