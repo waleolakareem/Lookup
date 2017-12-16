@@ -168,8 +168,22 @@ body {
   background-color: white;
   text-align: center;
   opacity: 0.8;
+   @media screen and (max-width:640px){
+    height: 200px;
+  }
 }
 
-.responsive-home-icons{
-  font-size: fa-5x;
+.responsive-home-cols{
+  padding-top:90px;
+   @media screen and (max-width:640px){
+    padding-top:60px;
+  }
+}
+
+.fa-5x{
+  font-size: 5em;
+  @media screen and (max-width:640px){
+    font-size: 3em;
+  }
+
 }
