@@ -1,26 +1,22 @@
-$( document ).ready(function() {
-    $('#datetimepicker1').datetimepicker({
-    });
-    goin()
-    $("#input").geocomplete();
+$(document).on('turbolinks:load', function(){
+  $('#datetimepicker1').datetimepicker({
+   });
+  x = navigator.geolocation;
+  x.getCurrentPosition(success, failure)
+    function success(position) {
+      var mylat = position.coords.latitude;
+      var mylong = position.coords.longitude;
+      $('#lat').val(mylat);
+      $('#long').val(mylong);
+    }
 
-  // x = navigator.geolocation;
-  // x.getCurrentPosition(success, failure)
-  // function success(position) {
-  //   var mylat = position.coords.latitude;
-  //   var mylong = position.coords.longitude;
-  //   $('#place').val(mylat);
-  //   $('#input').val(mylong);
-  // }
-
-  // function failure () {
-  //   $('#input').html("it didnt work");
-  // }
-
-
-
-
+    function failure () {
+      $('#input').html("it didnt work");
+    }
+  goin()
+  callto()
 });
+
 
 var goin = function(){
   $("#coco").on("click",function(e){
@@ -34,4 +30,8 @@ var goin = function(){
   })
 }
 
-
+var callto = function() {
+  if ($('body').attr('id') === "showpage"){
+    $('#CallToAction').hide()
+  }
+}

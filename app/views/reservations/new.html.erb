@@ -1,22 +1,24 @@
-<%= form_for ([@business,@reservation])  do |f| %>
-    <div class="text-center">
-      <div class="container" >
-        <div class="row">
-            <div class='col-sm-6'>
-                <div class="form-group">
-                    <div class='input-group date' id='datetimepicker1'>
-                        <%= f.text_field :start_time, placeholder: 'Start Time', class: 'form-control'%>
-                        <span class="input-group-addon">
-                            <span class="glyphicon glyphicon-calendar"></span>
-                        </span>
+<body id="showpage">
+    <%= form_for ([@business,@reservation])  do |f| %>
+        <div class="text-center">
+          <div class="container" >
+            <div class="row">
+                <div class='col-sm-6'>
+                    <div class="form-group">
+                        <div class='input-group date' id='datetimepicker1'>
+                            <%= f.text_field :start_time, placeholder: 'Start Time', class: 'form-control'%>
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    </div>
+        </div>
 
-    <%= f.hidden_field :user_id, :value => @user.id %>
-    <%= f.hidden_field :business_id, :value => @business.id %>
-    <div class="container" style="text-align: center;"><%= f.submit "Reserve your seat",class: 'btn btn-warning btn-lg' %></div>
-<% end %>
+        <%= f.hidden_field :user_id, :value => @user.id %>
+        <%= f.hidden_field :business_id, :value => @business.id %>
+        <div class="container" style="text-align: center;"><%= f.submit "Reserve your seat",class: 'btn btn-warning btn-lg' %></div>
+    <% end %>
+</body>
