@@ -208,16 +208,15 @@ body {
   }
 }
 
+#CallToAction {
+  display: show;
+}
 .responsive-home-div{
   height: 150px;
   background-color: white;
   text-align: center;
   opacity: 0.8;
   box-shadow: 1px 1px 5px rgba(0,0,0,1);
-}
-
-#callToAction{
-  display: show;
 }
 .responsive-home-cols{
   padding-top:40px;
