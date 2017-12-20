@@ -4,7 +4,7 @@
             <% @business.each do |business| %>
                 <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 " style="height:100%;background-size:cover;padding:5px 5px;">
                     <div style="width:100%;height:70%;background-image:url(<%= business.image_url %>);background-repeat:no-repeat;background-size:cover;overflow: hidden;">
-                        <p style="position: absolute;top:3px;background:white;opacity:0.6;padding: 0 3px;"> <%= business.distance %> mi</p>
+                        <p style="position: absolute;top:3px;background:white;opacity:0.6;padding: 0 3px;"> <%=business.distance.round(2)%> mi</p>
                     </div>
                     <div class="container"  style="text-align: center; width:100%;height:30%;background-color:white;opacity: 0.8; border-color:#f0ad4e;border-style: groove;">
                         <a href="/businesses/<%= business.id%>" style="color:

@@ -39,7 +39,7 @@ module BusinessesHelper
       @business.image_url = yelp["image_url"]
       @business.longitude = yelp["coordinates"]["longitude"]
       @business.latitude = yelp["coordinates"]["latitude"]
-      @business.distance = yelp["distance"]*0.000621371
+      @business.distance = yelp["distance"]/1000
       @business.image_url = yelp["image_url"]
       @business.save
     end
