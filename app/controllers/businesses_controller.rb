@@ -21,8 +21,7 @@ class BusinessesController < ApplicationController
       yelp(@term,@location,@longitude,@location)
       render 'index'
     else
-      # @business = Business.where(term: params[:business][:term])
-      render 'index'
+      redirect_to businesses_path, term: @term, location: @location
     end
   end
 
