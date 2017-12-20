@@ -41,7 +41,6 @@ class BusinessesController < ApplicationController
       # puts response.read_body
 
       api_response = JSON.parse(response.read_body)
-
       api_response["businesses"].each do |yelp|
         @business= Business.new(allowed_params)
         @business.name = yelp["name"]
@@ -63,11 +62,10 @@ class BusinessesController < ApplicationController
         @business.image_url = yelp["image_url"]
         @business.save
       end
-      render 'index'
+      redirect_to businesses_path, term: @term, location: @location
 
     else
-      # @business = Business.where(term: params[:business][:term])
-      render 'index'
+      redirect_to businesses_path, term: @term, location: @location
     end
   end
 
