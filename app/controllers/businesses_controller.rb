@@ -1,9 +1,10 @@
 require 'json'
 class BusinessesController < ApplicationController
+  include BusinessesHelper
   def index
-    @business = Business.all
-      if params[:term] && params[:location]
-        @business = Business.where("term = ? AND location = ?",params[:term],params[:location])
+      @business = Business.all
+      if params[:term] && params[:latitude]
+        @business = Business.near([params[:business][:latitude].to_f, params[:business][:longitude].to_f], 50, :order => :distance)
       end
   end
   def new
