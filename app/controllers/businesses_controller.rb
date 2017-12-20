@@ -1,14 +1,16 @@
 require 'json'
 class BusinessesController < ApplicationController
   include BusinessesHelper
+
   def index
       @business = Business.all
-      if params[:term] && params[:latitude]
-        @business = Business.near([params[:business][:latitude].to_f, params[:business][:longitude].to_f], 50, :order => :distance)
+      if params[:term] && params[:latitude] && params[:longitude]
+        @business = Business.near([params[:latitude].to_f, params[:longitude].to_f], 50, :order => :distance)
       end
   end
+
   def new
-    @business =Business.new
+    @business = Business.new
   end
 
   def create
@@ -63,10 +65,10 @@ class BusinessesController < ApplicationController
         @business.image_url = yelp["image_url"]
         @business.save
       end
-      redirect_to businesses_path, term: @term, location: @location
+      redirect_to businesses_path, term: @term, latitude: @latitude, longitude: @longitude
 
     else
-      redirect_to businesses_path, term: @term, location: @location
+      redirect_to businesses_path, term: @term, latitude: @latitude, longitude: @longitude
     end
   end
 
