@@ -1,14 +1,16 @@
 require 'json'
 class BusinessesController < ApplicationController
   include BusinessesHelper
+
   def index
-    @business = Business.all
-      if params[:term] && params[:latitude]
-        @business = Business.near([params[:business][:latitude].to_f, params[:business][:longitude].to_f], 50, :order => :distance)
+      @business = Business.all
+      if params[:term] && params[:latitude] && params[:longitude]
+        @business = Business.near([params[:latitude].to_f, params[:longitude].to_f], 50, :order => :distance)
       end
   end
+
   def new
-    @business =Business.new
+    @business = Business.new
   end
 
   def create
@@ -19,10 +21,9 @@ class BusinessesController < ApplicationController
     @latitude = params[:business][:latitude].to_f
     if @business.length <= 0
       yelp(@term,@location,@longitude,@location)
-      render action: "index"
+      redirect_to businesses_path, term: @term, latitude: @latitude, longitude: @longitude
     else
-      # @business = Business.where(term: params[:business][:term])
-      render action: "index"
+      redirect_to businesses_path, term: @term, latitude: @latitude, longitude: @longitude
     end
   end
 
