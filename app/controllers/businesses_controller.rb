@@ -4,8 +4,8 @@ class BusinessesController < ApplicationController
 
   def index
       @business = Business.all
-      if params[:term] && params[:latitude] && params[:longitude]
-        @business = Business.near([params[:latitude].to_f, params[:longitude].to_f], 50, :order => :distance)
+      if params[:term] && params[:latitude] && params[:longitude] && params[:location]
+        @business = Business.with_term(params[:term].to_s).with_location(params[:location].to_s).near([params[:latitude].to_f, params[:longitude].to_f], 50, :order => :distance)
       end
   end
 
@@ -14,7 +14,7 @@ class BusinessesController < ApplicationController
   end
 
   def create
-    @business = Business.where("term = ? AND location = ?",params[:business][:term],params[:business][:location])
+    @business = Business.where("term = ? AND location = ?", params[:business][:term], params[:business][:location])
     @term = params[:business][:term]
     @location = params[:business][:location]
     @longitude = params[:business][:longitude].to_f
@@ -26,7 +26,8 @@ class BusinessesController < ApplicationController
       p @latitude
       p @term
 
-      url = URI("https://api.yelp.com/v3/businesses/search?term=#{@term}&longitude=#{@longitude}&latitude=#{@latitude}&limit=50&sort_by=distance&Authorization=ENV[token]%20ENV[token_secret]")
+      # url = URI("https://api.yelp.com/v3/businesses/search?term=#{@term}&longitude=#{@longitude}&latitude=#{@latitude}&limit=50&sort_by=distance&Authorization=ENV[token]%20ENV[token_secret]")
+      url = URI("https://api.yelp.com/v3/businesses/search?term=#{@term}&location=#{@location}&limit=50&sort_by=distance&Authorization=ENV[token]%20ENV[token_secret]")
 
       http = Net::HTTP.new(url.host, url.port)
       http.use_ssl = true
@@ -65,10 +66,10 @@ class BusinessesController < ApplicationController
         @business.image_url = yelp["image_url"]
         @business.save
       end
-      redirect_to businesses_path, term: @term, latitude: @latitude, longitude: @longitude
+      redirect_to businesses_path(term: @term, latitude: @latitude, longitude: @longitude, location: @location)
 
     else
-      redirect_to businesses_path, term: @term, latitude: @latitude, longitude: @longitude
+      redirect_to businesses_path(term: @term, latitude: @latitude, longitude: @longitude, location: @location)
     end
   end
 
@@ -79,6 +80,7 @@ class BusinessesController < ApplicationController
   end
 
   private
+
     def allowed_params
       params.require(:business).permit(:rating,:price,:phone,:name,:review_count,:image_url,:city,:country,:address,:state,:zip_code,:term, :location,:latitude,:longitude )
     end
