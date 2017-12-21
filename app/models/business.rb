@@ -25,6 +25,10 @@
 
 class Business < ApplicationRecord
   geocoded_by :address
+
   has_many :reservations
   has_many :users, through: :reservations
+
+  scope :with_term, ->(q) { where('term ILIKE ?', "%#{q}%") }
+  scope :with_location, ->(q) { where('location ILIKE ?', "%#{q}%") }
 end

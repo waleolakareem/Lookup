@@ -3,8 +3,8 @@ module BusinessesHelper
     require 'uri'
     require 'net/http'
 
-    url = URI("https://api.yelp.com/v3/businesses/search?term=#{@term}&longitude=#{@longitude}&latitude=#{@latitude}&limit=50&sort_by=distance&Authorization=ENV[token]%20ENV[token_secret]")
-
+    # url = URI("https://api.yelp.com/v3/businesses/search?term=#{@term}&longitude=#{@longitude}&latitude=#{@latitude}&limit=50&sort_by=distance&Authorization=ENV[token]%20ENV[token_secret]")
+    url = URI("https://api.yelp.com/v3/businesses/search?term=#{@term}&location=#{@location}&limit=50&sort_by=distance&Authorization=ENV[token]%20ENV[token_secret]")
     http = Net::HTTP.new(url.host, url.port)
     http.use_ssl = true
     http.verify_mode = OpenSSL::SSL::VERIFY_NONE
