@@ -41,7 +41,14 @@ module BusinessesHelper
       @business.latitude = yelp["coordinates"]["latitude"]
       @business.distance = yelp["distance"]/1000
       @business.image_url = yelp["image_url"]
-      @business.save
+      if Business.exists?(name: @business.name, longitude: @business.longitude, latitude: @business.latitude)
+        p "e" * 99
+        p Business
+        p "r" * 100
+        @business.destroy
+      else
+        @business.save
+      end
     end
   end
 end
