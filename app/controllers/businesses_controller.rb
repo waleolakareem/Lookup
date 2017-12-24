@@ -33,6 +33,9 @@ class BusinessesController < ApplicationController
     @reservation = Reservation.where(business_id: @business.id, user_id: @user.id).last
   end
 
+  def widget
+  end
+
   private
 
     def allowed_params
