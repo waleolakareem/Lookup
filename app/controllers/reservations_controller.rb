@@ -9,8 +9,16 @@ class ReservationsController < ApplicationController
   def create
     @user = current_user
     @business = Business.find(params[:business_id])
-
+    p "e" * 99
+    p allowed_params
+    p "t" * 99
     @reservation = Reservation.new(allowed_params)
+
+    p "e" * 99
+    p @reservation.start_time
+    p @reservation.user_id
+    p @reservation.business.id
+    p "r" * 99
 
     if @reservation.save
       redirect_to business_path(@business)
