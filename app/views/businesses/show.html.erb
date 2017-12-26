@@ -15,7 +15,7 @@
         </div>
 
         <% if @business.users.include? current_user %>
-            <p>You have a reservation with <%= @business.name %> by <%= @reservation.start_time.strftime("%A %B %e, %Y %l:%M %p") %></p>
+            <p>You have a reservation with <%= @business.name %> by <%= @reservation.start_time.strftime('%A, %D') %></p>
         <% else  %>
             <div style="padding-top:15px;padding-bottom:15px;text-align:center;">
                 <button class="btn btn-outline-secondary responsive-button" type="button"><%= link_to "Make a Reservation",new_business_reservation_path(@business), class: 'link-to-text-color',:style=> 'text-decoration:none; color:black;' %></button>

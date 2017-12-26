@@ -1,6 +1,7 @@
 $(document).on('turbolinks:load', function(){
-  $('#datetimepicker1').datetimepicker({
-   });
+  $(function () {
+                $('#datetimepicker1').datetimepicker();
+            });
   x = navigator.geolocation;
   x.getCurrentPosition(success, failure)
     function success(position) {
